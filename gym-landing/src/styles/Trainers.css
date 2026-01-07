@@ -1,0 +1,343 @@
+/* Trainers Page Styles */
+.trainers-page {
+  min-height: 100vh;
+  padding-top: 80px;
+  background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+}
+
+.trainers-header {
+  background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #1f2f1a 100%);
+  padding: 5rem 0 3rem;
+  text-align: center;
+  color: var(--white);
+}
+
+.trainers-header h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.trainers-header h1 span {
+  color: var(--primary-green);
+}
+
+.trainers-header p {
+  font-size: 1.25rem;
+  color: #d1d5db;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Trainers Grid */
+.trainers-content {
+  padding: 5rem 0;
+}
+
+.trainers-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 3rem;
+}
+
+@media (min-width: 768px) {
+  .trainers-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .trainers-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Trainer Card */
+.trainer-card {
+  background-color: var(--white);
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  transition: all 0.3s ease;
+}
+
+.trainer-card:hover {
+  box-shadow: var(--shadow-xl);
+  transform: translateY(-10px);
+}
+
+.trainer-image-container {
+  position: relative;
+  height: 350px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #e5e7eb 0%, #d1d5db 100%);
+}
+
+.trainer-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.trainer-card:hover .trainer-image {
+  transform: scale(1.05);
+}
+
+.trainer-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: var(--primary-green);
+  color: var(--black);
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 0.75rem;
+  box-shadow: var(--shadow-md);
+}
+
+.trainer-status {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  color: var(--white);
+  font-size: 0.875rem;
+}
+
+.status-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: var(--primary-green);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Trainer Info */
+.trainer-info {
+  padding: 2rem;
+}
+
+.trainer-name {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--dark-gray);
+  margin-bottom: 0.5rem;
+}
+
+.trainer-title {
+  color: var(--primary-green);
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.trainer-bio {
+  color: var(--medium-gray);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  font-size: 0.9375rem;
+}
+
+/* Specialties */
+.trainer-specialties {
+  margin-bottom: 1.5rem;
+}
+
+.specialties-title {
+  font-weight: 700;
+  color: var(--dark-gray);
+  font-size: 0.875rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.specialties-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.specialty-tag {
+  background-color: rgba(126, 211, 33, 0.1);
+  color: var(--dark-gray);
+  padding: 0.375rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 1px solid rgba(126, 211, 33, 0.3);
+}
+
+/* Certifications */
+.trainer-certifications {
+  margin-bottom: 1.5rem;
+}
+
+.certifications-title {
+  font-weight: 700;
+  color: var(--dark-gray);
+  font-size: 0.875rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.certifications-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.certification-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--medium-gray);
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+
+.certification-item::before {
+  content: '✓';
+  color: var(--primary-green);
+  font-weight: 700;
+}
+
+/* Stats */
+.trainer-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding: 1rem 0;
+  border-top: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 1.5rem;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-green);
+  display: block;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  color: var(--medium-gray);
+  margin-top: 0.25rem;
+}
+
+/* Contact Button */
+.trainer-contact {
+  width: 100%;
+  background-color: var(--primary-green);
+  color: var(--black);
+  padding: 0.875rem;
+  border-radius: 0.75rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.trainer-contact:hover {
+  background-color: var(--neon-green);
+  transform: scale(1.02);
+  box-shadow: var(--shadow-green);
+}
+
+/* Team Section */
+.team-values {
+  background-color: var(--white);
+  border-radius: 1.5rem;
+  padding: 3rem;
+  margin-top: 4rem;
+  box-shadow: var(--shadow-md);
+}
+
+.team-values h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--dark-gray);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.team-values h2 span {
+  color: var(--primary-green);
+}
+
+.team-values p {
+  color: var(--medium-gray);
+  line-height: 1.8;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 2rem;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+@media (min-width: 768px) {
+  .values-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.value-item {
+  text-align: center;
+}
+
+.value-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.value-title {
+  font-weight: 700;
+  color: var(--dark-gray);
+  margin-bottom: 0.5rem;
+}
+
+.value-description {
+  color: var(--medium-gray);
+  font-size: 0.875rem;
+}
+
+@media (max-width: 768px) {
+  .trainers-header h1 {
+    font-size: 2.5rem;
+  }
+
+  .trainer-image-container {
+    height: 300px;
+  }
+}
