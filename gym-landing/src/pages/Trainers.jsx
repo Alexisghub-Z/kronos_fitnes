@@ -1,3 +1,4 @@
+import { FaDumbbell, FaRunning, FaMusic, FaBiking, FaYinYang, FaMedal, FaStar, FaUsers, FaClock, FaCheckCircle, FaFire } from 'react-icons/fa'
 import '../styles/Trainers.css'
 
 const Trainers = () => {
@@ -5,7 +6,7 @@ const Trainers = () => {
     {
       name: 'Ana Rodríguez',
       title: 'Especialista en Fuerza y Acondicionamiento',
-      image: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=400',
+      icon: <FaDumbbell />,
       bio: 'Con 8 años de experiencia en entrenamiento funcional y levantamiento olímpico. Apasionada por ayudar a las personas a alcanzar sus metas físicas.',
       specialties: ['Pesas', 'CrossFit', 'Funcional', 'Fuerza', 'Nutrición Deportiva'],
       certifications: [
@@ -20,12 +21,13 @@ const Trainers = () => {
         rating: '4.9/5'
       },
       badge: 'Jefa de Entrenadores',
+      color: '#7ED321',
       available: true
     },
     {
       name: 'Carlos Méndez',
       title: 'Experto en Cardio y HIIT',
-      image: 'https://images.unsplash.com/photo-1568602471122-7832951cc4c5?q=80&w=400',
+      icon: <FaRunning />,
       bio: 'Entrenador certificado especializado en programas de alta intensidad y acondicionamiento cardiovascular. Ayudo a mis clientes a superar sus límites.',
       specialties: ['HIIT', 'Cardio', 'Running', 'Resistencia', 'Pérdida de Peso'],
       certifications: [
@@ -40,12 +42,13 @@ const Trainers = () => {
         rating: '4.8/5'
       },
       badge: 'Top Trainer',
+      color: '#ef4444',
       available: true
     },
     {
       name: 'María González',
       title: 'Instructora de Baile y Zumba',
-      image: 'https://images.unsplash.com/photo-1583468982228-19f19164aee2?q=80&w=400',
+      icon: <FaMusic />,
       bio: 'Instructora certificada de Zumba y danza fitness. Mi misión es hacer que el ejercicio sea divertido y que cada clase sea una fiesta inolvidable.',
       specialties: ['Zumba', 'Baile', 'Salsa', 'Reggaeton', 'Dance Cardio'],
       certifications: [
@@ -60,12 +63,13 @@ const Trainers = () => {
         rating: '5.0/5'
       },
       badge: 'Estrella del Baile',
+      color: '#ec4899',
       available: true
     },
     {
       name: 'Roberto Silva',
       title: 'Especialista en Cycling',
-      image: 'https://images.unsplash.com/photo-1566753323558-f4e0952af115?q=80&w=400',
+      icon: <FaBiking />,
       bio: 'Ciclista profesional y entrenador de spinning. Diseño entrenamientos de alta energía que te llevarán al límite mientras disfrutas cada pedalada.',
       specialties: ['Cycling', 'Spinning', 'Resistencia', 'Intervalos', 'Indoor Bike'],
       certifications: [
@@ -80,12 +84,13 @@ const Trainers = () => {
         rating: '4.9/5'
       },
       badge: 'Rey del Cycling',
+      color: '#3b82f6',
       available: true
     },
     {
       name: 'Laura Martínez',
       title: 'Instructora de Yoga y Pilates',
-      image: 'https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?q=80&w=400',
+      icon: <FaYinYang />,
       bio: 'Maestra certificada de Yoga y Pilates con enfoque en mindfulness y bienestar integral. Ayudo a conectar cuerpo, mente y espíritu.',
       specialties: ['Yoga', 'Pilates', 'Meditación', 'Flexibilidad', 'Mindfulness'],
       certifications: [
@@ -100,12 +105,13 @@ const Trainers = () => {
         rating: '5.0/5'
       },
       badge: 'Maestra Yoga',
+      color: '#8b5cf6',
       available: false
     },
     {
       name: 'Diego Fernández',
       title: 'Coach de Alto Rendimiento',
-      image: 'https://images.unsplash.com/photo-1605296867304-46d5465a13f1?q=80&w=400',
+      icon: <FaMedal />,
       bio: 'Entrenador personal especializado en atletas y deportistas de alto rendimiento. Programas personalizados para alcanzar el máximo potencial.',
       specialties: ['Alto Rendimiento', 'Fuerza', 'Velocidad', 'Agilidad', 'Atletas'],
       certifications: [
@@ -120,9 +126,14 @@ const Trainers = () => {
         rating: '5.0/5'
       },
       badge: 'Elite Coach',
+      color: '#f59e0b',
       available: true
     }
   ]
+
+  const getInitials = (name) => {
+    return name.split(' ').map(n => n[0]).join('')
+  }
 
   return (
     <div className="trainers-page">
@@ -139,49 +150,68 @@ const Trainers = () => {
         <div className="container">
           <div className="trainers-grid">
             {trainers.map((trainer, index) => (
-              <div key={index} className="trainer-card">
-                <div className="trainer-image-container">
-                  <img
-                    src={trainer.image}
-                    alt={trainer.name}
-                    className="trainer-image"
-                  />
-                  <div className="trainer-badge">{trainer.badge}</div>
-                  <div className="trainer-status">
-                    {trainer.available && <span className="status-dot"></span>}
-                    {trainer.available ? 'Disponible' : 'No disponible'}
+              <div key={index} className="trainer-card-modern">
+                {/* Header with Icon and Badge */}
+                <div className="trainer-card-header-modern">
+                  <div className="trainer-icon-container" style={{ background: `linear-gradient(135deg, ${trainer.color} 0%, ${trainer.color}dd 100%)` }}>
+                    <div className="trainer-icon-large">
+                      {trainer.icon}
+                    </div>
+                    <div className="trainer-initials">{getInitials(trainer.name)}</div>
+                  </div>
+
+                  <div className="trainer-header-info">
+                    <div className="trainer-status-modern">
+                      {trainer.available && <span className="status-dot-modern"></span>}
+                      {trainer.available ? 'Disponible' : 'No disponible'}
+                    </div>
+                    <div className="trainer-badge-modern">{trainer.badge}</div>
                   </div>
                 </div>
 
-                <div className="trainer-info">
-                  <h2 className="trainer-name">{trainer.name}</h2>
-                  <p className="trainer-title">{trainer.title}</p>
-                  <p className="trainer-bio">{trainer.bio}</p>
+                {/* Main Info */}
+                <div className="trainer-info-modern">
+                  <h2 className="trainer-name-modern">{trainer.name}</h2>
+                  <p className="trainer-title-modern">
+                    <FaFire className="title-icon" />
+                    {trainer.title}
+                  </p>
+                  <p className="trainer-bio-modern">{trainer.bio}</p>
 
-                  {/* Stats */}
-                  <div className="trainer-stats">
-                    <div className="stat-item">
-                      <span className="stat-value">{trainer.stats.experience}</span>
-                      <span className="stat-label">Experiencia</span>
+                  {/* Stats Grid */}
+                  <div className="trainer-stats-modern">
+                    <div className="stat-item-modern">
+                      <FaClock className="stat-icon" />
+                      <div className="stat-content">
+                        <span className="stat-value-modern">{trainer.stats.experience}</span>
+                        <span className="stat-label-modern">Experiencia</span>
+                      </div>
                     </div>
-                    <div className="stat-item">
-                      <span className="stat-value">{trainer.stats.clients}</span>
-                      <span className="stat-label">Clientes</span>
+                    <div className="stat-item-modern">
+                      <FaUsers className="stat-icon" />
+                      <div className="stat-content">
+                        <span className="stat-value-modern">{trainer.stats.clients}</span>
+                        <span className="stat-label-modern">Clientes</span>
+                      </div>
                     </div>
-                    <div className="stat-item">
-                      <span className="stat-value">{trainer.stats.rating}</span>
-                      <span className="stat-label">Rating</span>
+                    <div className="stat-item-modern">
+                      <FaStar className="stat-icon" />
+                      <div className="stat-content">
+                        <span className="stat-value-modern">{trainer.stats.rating}</span>
+                        <span className="stat-label-modern">Rating</span>
+                      </div>
                     </div>
                   </div>
 
                   {/* Specialties */}
-                  <div className="trainer-specialties">
-                    <div className="specialties-title">
-                      🎯 Especialidades
+                  <div className="trainer-section">
+                    <div className="section-title-modern">
+                      <FaDumbbell className="section-icon" />
+                      Especialidades
                     </div>
-                    <div className="specialties-list">
+                    <div className="specialties-list-modern">
                       {trainer.specialties.map((specialty, idx) => (
-                        <span key={idx} className="specialty-tag">
+                        <span key={idx} className="specialty-tag-modern" style={{ borderColor: trainer.color }}>
                           {specialty}
                         </span>
                       ))}
@@ -189,21 +219,24 @@ const Trainers = () => {
                   </div>
 
                   {/* Certifications */}
-                  <div className="trainer-certifications">
-                    <div className="certifications-title">
-                      🏆 Certificaciones
+                  <div className="trainer-section">
+                    <div className="section-title-modern">
+                      <FaCheckCircle className="section-icon" />
+                      Certificaciones
                     </div>
-                    <ul className="certifications-list">
+                    <div className="certifications-grid-modern">
                       {trainer.certifications.map((cert, idx) => (
-                        <li key={idx} className="certification-item">
-                          {cert}
-                        </li>
+                        <div key={idx} className="certification-item-modern">
+                          <div className="cert-check" style={{ color: trainer.color }}>✓</div>
+                          <span>{cert}</span>
+                        </div>
                       ))}
-                    </ul>
+                    </div>
                   </div>
 
                   {/* Contact Button */}
-                  <button className="trainer-contact">
+                  <button className="trainer-contact-modern" style={{ background: `linear-gradient(135deg, ${trainer.color} 0%, ${trainer.color}dd 100%)` }}>
+                    <FaMedal />
                     Agendar Sesión
                   </button>
                 </div>

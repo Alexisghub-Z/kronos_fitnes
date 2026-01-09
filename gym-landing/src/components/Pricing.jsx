@@ -1,8 +1,21 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import useAuthStore from '../stores/authStore'
+import toast from 'react-hot-toast'
 import '../styles/Pricing.css'
 
 const Pricing = () => {
+  const navigate = useNavigate()
+  const { isAuthenticated } = useAuthStore()
   const [activeArea, setActiveArea] = useState('pesas')
+
+  const handleSelectPlan = (planName, area) => {
+    if (!isAuthenticated) {
+      toast.error('Debes iniciar sesión para continuar')
+      return
+    }
+    navigate(`/checkout?plan=${encodeURIComponent(planName)}&area=${area}`)
+  }
 
   const pricingByArea = {
     pesas: [
@@ -139,7 +152,10 @@ const Pricing = () => {
                 ))}
               </ul>
 
-              <button className="pricing-cta">
+              <button
+                className="pricing-cta"
+                onClick={() => handleSelectPlan(plan.name, activeArea)}
+              >
                 Comenzar Ahora
               </button>
             </div>

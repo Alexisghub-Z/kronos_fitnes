@@ -1,12 +1,22 @@
 import { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { FaUser, FaSignOutAlt, FaUserCircle, FaCog } from 'react-icons/fa'
+import useAuthStore from '../stores/authStore'
+import LoginModal from './auth/LoginModal'
+import RegisterModal from './auth/RegisterModal'
+import toast from 'react-hot-toast'
 import '../styles/Navbar.css'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [isAreasOpen, setIsAreasOpen] = useState(false)
+  const [isProfileOpen, setIsProfileOpen] = useState(false)
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false)
+  const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false)
+
   const location = useLocation()
   const navigate = useNavigate()
+  const { isAuthenticated, user, logout } = useAuthStore()
 
   const scrollToSection = (sectionId) => {
     if (location.pathname !== '/') {
@@ -24,6 +34,24 @@ const Navbar = () => {
       }
     }
     setIsOpen(false)
+  }
+
+  const handleLogout = () => {
+    logout()
+    setIsProfileOpen(false)
+    setIsOpen(false)
+    toast.success('Sesión cerrada exitosamente')
+    navigate('/')
+  }
+
+  const handleSwitchToRegister = () => {
+    setIsLoginModalOpen(false)
+    setIsRegisterModalOpen(true)
+  }
+
+  const handleSwitchToLogin = () => {
+    setIsRegisterModalOpen(false)
+    setIsLoginModalOpen(true)
   }
 
   return (
@@ -94,16 +122,90 @@ const Navbar = () => {
           </li>
 
           <li>
+            <Link to="/tour-virtual" className="navbar-link" onClick={() => setIsOpen(false)}>
+              Tour Virtual
+            </Link>
+          </li>
+
+          <li>
             <button onClick={() => scrollToSection('pricing')} className="navbar-link">
               Planes
             </button>
           </li>
 
-          <li>
-            <Link to="/reservar" className="navbar-cta" onClick={() => setIsOpen(false)}>
-              Reservar Clase
-            </Link>
-          </li>
+          {isAuthenticated ? (
+            <li className="navbar-dropdown">
+              <button
+                className="navbar-link navbar-profile"
+                onClick={() => setIsProfileOpen(!isProfileOpen)}
+              >
+                <FaUserCircle /> {user?.name}
+              </button>
+              {isProfileOpen && (
+                <ul className="navbar-dropdown-menu navbar-profile-menu">
+                  <li>
+                    <Link
+                      to="/mi-cuenta"
+                      className="navbar-dropdown-link"
+                      onClick={() => {
+                        setIsOpen(false)
+                        setIsProfileOpen(false)
+                      }}
+                    >
+                      <FaUser /> Mi Cuenta
+                    </Link>
+                  </li>
+                  {user?.role === 'admin' && (
+                    <li>
+                      <Link
+                        to="/admin"
+                        className="navbar-dropdown-link"
+                        onClick={() => {
+                          setIsOpen(false)
+                          setIsProfileOpen(false)
+                        }}
+                      >
+                        <FaCog /> Panel Admin
+                      </Link>
+                    </li>
+                  )}
+                  <li>
+                    <button
+                      className="navbar-dropdown-link navbar-logout"
+                      onClick={handleLogout}
+                    >
+                      <FaSignOutAlt /> Cerrar Sesión
+                    </button>
+                  </li>
+                </ul>
+              )}
+            </li>
+          ) : (
+            <>
+              <li>
+                <button
+                  className="navbar-link"
+                  onClick={() => {
+                    setIsLoginModalOpen(true)
+                    setIsOpen(false)
+                  }}
+                >
+                  Iniciar Sesión
+                </button>
+              </li>
+              <li>
+                <button
+                  className="navbar-cta"
+                  onClick={() => {
+                    setIsRegisterModalOpen(true)
+                    setIsOpen(false)
+                  }}
+                >
+                  Registrarse
+                </button>
+              </li>
+            </>
+          )}
         </ul>
 
         <button
@@ -119,6 +221,18 @@ const Navbar = () => {
           </svg>
         </button>
       </div>
+
+      {/* Auth Modals */}
+      <LoginModal
+        isOpen={isLoginModalOpen}
+        onClose={() => setIsLoginModalOpen(false)}
+        onSwitchToRegister={handleSwitchToRegister}
+      />
+      <RegisterModal
+        isOpen={isRegisterModalOpen}
+        onClose={() => setIsRegisterModalOpen(false)}
+        onSwitchToLogin={handleSwitchToLogin}
+      />
     </nav>
   )
 }

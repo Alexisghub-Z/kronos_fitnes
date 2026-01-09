@@ -1,8 +1,18 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
+import {
+  FaClock,
+  FaUser,
+  FaDumbbell,
+  FaFire,
+  FaUsers,
+  FaCalendarCheck
+} from 'react-icons/fa'
 import '../styles/Schedule.css'
 
 const Schedule = () => {
+  const [selectedDay, setSelectedDay] = useState(0)
   const [filters, setFilters] = useState({
     area: 'todas',
     level: 'todos',
@@ -23,7 +33,8 @@ const Schedule = () => {
           duration: '45 min',
           spots: 8,
           totalSpots: 15,
-          icon: '❤️'
+          icon: '❤️',
+          intensity: 'media'
         },
         {
           time: '7:00 AM',
@@ -34,7 +45,8 @@ const Schedule = () => {
           duration: '60 min',
           spots: 5,
           totalSpots: 12,
-          icon: '🏋️'
+          icon: '🏋️',
+          intensity: 'alta'
         },
         {
           time: '9:00 AM',
@@ -45,7 +57,8 @@ const Schedule = () => {
           duration: '50 min',
           spots: 12,
           totalSpots: 20,
-          icon: '💃'
+          icon: '💃',
+          intensity: 'media'
         },
         {
           time: '6:00 PM',
@@ -56,7 +69,8 @@ const Schedule = () => {
           duration: '45 min',
           spots: 3,
           totalSpots: 15,
-          icon: '🚴'
+          icon: '🚴',
+          intensity: 'alta'
         },
         {
           time: '7:30 PM',
@@ -67,7 +81,8 @@ const Schedule = () => {
           duration: '60 min',
           spots: 10,
           totalSpots: 15,
-          icon: '🧘'
+          icon: '🧘',
+          intensity: 'baja'
         }
       ]
     },
@@ -84,7 +99,8 @@ const Schedule = () => {
           duration: '30 min',
           spots: 6,
           totalSpots: 12,
-          icon: '🔥'
+          icon: '🔥',
+          intensity: 'alta'
         },
         {
           time: '10:00 AM',
@@ -95,7 +111,8 @@ const Schedule = () => {
           duration: '45 min',
           spots: 15,
           totalSpots: 20,
-          icon: '💃'
+          icon: '💃',
+          intensity: 'media'
         },
         {
           time: '5:30 PM',
@@ -106,7 +123,8 @@ const Schedule = () => {
           duration: '40 min',
           spots: 8,
           totalSpots: 15,
-          icon: '🚴'
+          icon: '🚴',
+          intensity: 'baja'
         },
         {
           time: '7:00 PM',
@@ -117,7 +135,8 @@ const Schedule = () => {
           duration: '60 min',
           spots: 4,
           totalSpots: 12,
-          icon: '💪'
+          icon: '💪',
+          intensity: 'media'
         }
       ]
     },
@@ -134,7 +153,8 @@ const Schedule = () => {
           duration: '30 min',
           spots: 10,
           totalSpots: 15,
-          icon: '❤️'
+          icon: '❤️',
+          intensity: 'media'
         },
         {
           time: '9:00 AM',
@@ -145,7 +165,8 @@ const Schedule = () => {
           duration: '45 min',
           spots: 18,
           totalSpots: 20,
-          icon: '💃'
+          icon: '💃',
+          intensity: 'baja'
         },
         {
           time: '12:00 PM',
@@ -156,7 +177,8 @@ const Schedule = () => {
           duration: '45 min',
           spots: 7,
           totalSpots: 15,
-          icon: '🚴'
+          icon: '🚴',
+          intensity: 'media'
         },
         {
           time: '6:00 PM',
@@ -167,7 +189,8 @@ const Schedule = () => {
           duration: '60 min',
           spots: 2,
           totalSpots: 10,
-          icon: '🏋️'
+          icon: '🏋️',
+          intensity: 'alta'
         },
         {
           time: '8:00 PM',
@@ -178,7 +201,8 @@ const Schedule = () => {
           duration: '50 min',
           spots: 12,
           totalSpots: 15,
-          icon: '🧘'
+          icon: '🧘',
+          intensity: 'baja'
         }
       ]
     },
@@ -195,7 +219,8 @@ const Schedule = () => {
           duration: '45 min',
           spots: 9,
           totalSpots: 15,
-          icon: '🔥'
+          icon: '🔥',
+          intensity: 'alta'
         },
         {
           time: '10:00 AM',
@@ -206,7 +231,8 @@ const Schedule = () => {
           duration: '50 min',
           spots: 16,
           totalSpots: 20,
-          icon: '💃'
+          icon: '💃',
+          intensity: 'media'
         },
         {
           time: '5:30 PM',
@@ -217,7 +243,8 @@ const Schedule = () => {
           duration: '40 min',
           spots: 5,
           totalSpots: 15,
-          icon: '🚴'
+          icon: '🚴',
+          intensity: 'alta'
         },
         {
           time: '7:00 PM',
@@ -228,7 +255,8 @@ const Schedule = () => {
           duration: '50 min',
           spots: 6,
           totalSpots: 12,
-          icon: '🍑'
+          icon: '🍑',
+          intensity: 'media'
         }
       ]
     },
@@ -245,7 +273,8 @@ const Schedule = () => {
           duration: '45 min',
           spots: 11,
           totalSpots: 15,
-          icon: '❤️'
+          icon: '❤️',
+          intensity: 'media'
         },
         {
           time: '9:00 AM',
@@ -256,7 +285,8 @@ const Schedule = () => {
           duration: '50 min',
           spots: 14,
           totalSpots: 20,
-          icon: '🔊'
+          icon: '🔊',
+          intensity: 'media'
         },
         {
           time: '6:00 PM',
@@ -267,7 +297,8 @@ const Schedule = () => {
           duration: '50 min',
           spots: 1,
           totalSpots: 15,
-          icon: '🚴'
+          icon: '🚴',
+          intensity: 'alta'
         },
         {
           time: '7:30 PM',
@@ -278,7 +309,8 @@ const Schedule = () => {
           duration: '60 min',
           spots: 8,
           totalSpots: 12,
-          icon: '💪'
+          icon: '💪',
+          intensity: 'media'
         }
       ]
     },
@@ -295,7 +327,8 @@ const Schedule = () => {
           duration: '45 min',
           spots: 13,
           totalSpots: 15,
-          icon: '❤️'
+          icon: '❤️',
+          intensity: 'media'
         },
         {
           time: '10:00 AM',
@@ -306,7 +339,8 @@ const Schedule = () => {
           duration: '60 min',
           spots: 17,
           totalSpots: 20,
-          icon: '💃'
+          icon: '💃',
+          intensity: 'media'
         },
         {
           time: '11:30 AM',
@@ -317,7 +351,8 @@ const Schedule = () => {
           duration: '45 min',
           spots: 9,
           totalSpots: 15,
-          icon: '🚴'
+          icon: '🚴',
+          intensity: 'media'
         },
         {
           time: '4:00 PM',
@@ -328,7 +363,8 @@ const Schedule = () => {
           duration: '50 min',
           spots: 7,
           totalSpots: 12,
-          icon: '🏋️'
+          icon: '🏋️',
+          intensity: 'media'
         }
       ]
     }
@@ -347,22 +383,61 @@ const Schedule = () => {
     })
   }
 
+  const getLevelColor = (level) => {
+    const colors = {
+      'Principiante': 'level-beginner',
+      'Intermedio': 'level-intermediate',
+      'Avanzado': 'level-advanced',
+      'Todos': 'level-all'
+    }
+    return colors[level] || 'level-all'
+  }
+
+  const getIntensityBadge = (intensity) => {
+    const badges = {
+      'baja': { icon: <FaFire />, text: 'Baja', className: 'intensity-low' },
+      'media': { icon: <FaFire />, text: 'Media', className: 'intensity-medium' },
+      'alta': { icon: <FaFire />, text: 'Alta', className: 'intensity-high' }
+    }
+    return badges[intensity] || badges.media
+  }
+
+  const getAvailabilityStatus = (spots, total) => {
+    const percentage = (spots / total) * 100
+    if (percentage === 0) return { text: 'Lleno', className: 'status-full' }
+    if (percentage <= 20) return { text: 'Últimos lugares', className: 'status-low' }
+    if (percentage <= 50) return { text: 'Disponible', className: 'status-medium' }
+    return { text: 'Muchos lugares', className: 'status-high' }
+  }
+
+  const currentDay = weekSchedule[selectedDay]
+  const filteredClasses = filterClasses(currentDay.classes)
+
   return (
     <div className="schedule-page">
       {/* Header */}
-      <section className="schedule-header">
+      <motion.section
+        className="schedule-header"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+      >
         <div className="container">
           <h1>Horario de <span>Clases</span></h1>
           <p>Encuentra tu clase perfecta y reserva tu lugar</p>
         </div>
-      </section>
+      </motion.section>
 
       {/* Filters */}
-      <section className="schedule-filters">
+      <motion.section
+        className="schedule-filters"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.1 }}
+      >
         <div className="container">
           <div className="filters-grid">
             <div className="filter-group">
-              <label htmlFor="area">Área</label>
+              <label htmlFor="area"><FaDumbbell /> Área</label>
               <select
                 id="area"
                 value={filters.area}
@@ -378,7 +453,7 @@ const Schedule = () => {
             </div>
 
             <div className="filter-group">
-              <label htmlFor="level">Nivel</label>
+              <label htmlFor="level"><FaFire /> Nivel</label>
               <select
                 id="level"
                 value={filters.level}
@@ -392,7 +467,7 @@ const Schedule = () => {
             </div>
 
             <div className="filter-group">
-              <label htmlFor="time">Horario</label>
+              <label htmlFor="time"><FaClock /> Horario</label>
               <select
                 id="time"
                 value={filters.time}
@@ -406,86 +481,145 @@ const Schedule = () => {
             </div>
 
             <div className="filter-group">
-              <Link to="/reservar" className="btn btn-primary" style={{marginTop: '1.5rem'}}>
-                Reservar Clase
+              <Link to="/reservar" className="btn btn-primary reserve-btn">
+                <FaCalendarCheck /> Reservar Clase
               </Link>
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      {/* Calendar */}
-      <section className="schedule-content">
+      {/* Day Selector */}
+      <motion.section
+        className="day-selector-section"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2 }}
+      >
         <div className="container">
-          <div className="week-calendar">
+          <div className="day-selector">
             {weekSchedule.map((day, index) => (
-              <div key={index} className="day-card">
-                <div className="day-header">
-                  <div className="day-name">{day.day}</div>
-                  <div className="day-date">{day.date}</div>
-                </div>
-                <div className="day-classes">
-                  {filterClasses(day.classes).length > 0 ? (
-                    filterClasses(day.classes).map((classItem, idx) => (
-                      <div key={idx} className="class-item">
-                        <div className="class-time">
-                          <span className="class-time-icon">{classItem.icon}</span>
-                          {classItem.time}
-                        </div>
-                        <div className="class-name">{classItem.name}</div>
-                        <div className="class-details">
-                          <span className="class-tag">📍 {classItem.area}</span>
-                          <span className="class-tag">⏱️ {classItem.duration}</span>
-                          <span className="class-tag">📊 {classItem.level}</span>
-                        </div>
-                        <div className="class-instructor">
-                          👨‍🏫 {classItem.instructor}
-                        </div>
-                        <div className="class-spots">
-                          <span className="spots-info">
-                            <span className="spots-available">{classItem.spots}</span> lugares disponibles
-                          </span>
-                          <button
-                            className="book-button"
-                            disabled={classItem.spots === 0}
-                          >
-                            {classItem.spots > 0 ? 'Reservar' : 'Lleno'}
-                          </button>
-                        </div>
-                      </div>
-                    ))
-                  ) : (
-                    <p style={{textAlign: 'center', color: '#6b7280', padding: '2rem'}}>
-                      No hay clases que coincidan con tus filtros
-                    </p>
-                  )}
-                </div>
-              </div>
+              <motion.button
+                key={index}
+                className={`day-btn ${selectedDay === index ? 'active' : ''}`}
+                onClick={() => setSelectedDay(index)}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <div className="day-btn-name">{day.day}</div>
+                <div className="day-btn-date">{day.date}</div>
+                <div className="day-btn-count">{day.classes.length} clases</div>
+              </motion.button>
             ))}
           </div>
+        </div>
+      </motion.section>
 
-          {/* Legend */}
-          <div className="schedule-legend">
-            <h3 className="legend-title">Leyenda de Niveles</h3>
-            <div className="legend-items">
-              <div className="legend-item">
-                <div className="legend-color" style={{backgroundColor: '#10b981'}}></div>
-                <span className="legend-label">Principiante - Ideal para empezar</span>
-              </div>
-              <div className="legend-item">
-                <div className="legend-color" style={{backgroundColor: '#f59e0b'}}></div>
-                <span className="legend-label">Intermedio - Algo de experiencia</span>
-              </div>
-              <div className="legend-item">
-                <div className="legend-color" style={{backgroundColor: '#ef4444'}}></div>
-                <span className="legend-label">Avanzado - Muy exigente</span>
-              </div>
-              <div className="legend-item">
-                <div className="legend-color" style={{backgroundColor: '#7ED321'}}></div>
-                <span className="legend-label">Todos - Adaptable a tu nivel</span>
-              </div>
-            </div>
-          </div>
+      {/* Classes List */}
+      <section className="schedule-content">
+        <div className="container">
+          <motion.div
+            className="classes-grid"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+          >
+            {filteredClasses.length > 0 ? (
+              filteredClasses.map((classItem, idx) => {
+                const intensityBadge = getIntensityBadge(classItem.intensity)
+                const availabilityStatus = getAvailabilityStatus(classItem.spots, classItem.totalSpots)
+                const spotsPercentage = (classItem.spots / classItem.totalSpots) * 100
+
+                return (
+                  <motion.div
+                    key={idx}
+                    className="class-card-modern"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: idx * 0.05 }}
+                    whileHover={{ y: -8, boxShadow: '0 12px 32px rgba(126, 211, 33, 0.2)' }}
+                  >
+                    <div className="class-card-header">
+                      <div className="class-icon-large">{classItem.icon}</div>
+                      <div className="class-time-badge">
+                        <FaClock /> {classItem.time}
+                      </div>
+                    </div>
+
+                    <div className="class-card-body">
+                      <h3 className="class-title">{classItem.name}</h3>
+
+                      <div className="class-badges">
+                        <span className={`level-badge ${getLevelColor(classItem.level)}`}>
+                          {classItem.level}
+                        </span>
+                        <span className={`intensity-badge ${intensityBadge.className}`}>
+                          {intensityBadge.icon} {intensityBadge.text}
+                        </span>
+                      </div>
+
+                      <div className="class-info-grid">
+                        <div className="info-item">
+                          <FaUser className="info-icon" />
+                          <span>{classItem.instructor}</span>
+                        </div>
+                        <div className="info-item">
+                          <FaClock className="info-icon" />
+                          <span>{classItem.duration}</span>
+                        </div>
+                        <div className="info-item">
+                          <FaDumbbell className="info-icon" />
+                          <span>{classItem.area}</span>
+                        </div>
+                      </div>
+
+                      <div className="availability-section">
+                        <div className="availability-header">
+                          <span className={`availability-status ${availabilityStatus.className}`}>
+                            {availabilityStatus.text}
+                          </span>
+                          <span className="availability-count">
+                            <FaUsers /> {classItem.spots}/{classItem.totalSpots}
+                          </span>
+                        </div>
+                        <div className="availability-bar">
+                          <motion.div
+                            className="availability-fill"
+                            initial={{ width: 0 }}
+                            animate={{ width: `${spotsPercentage}%` }}
+                            transition={{ duration: 0.8, delay: idx * 0.05 }}
+                            style={{
+                              backgroundColor: spotsPercentage > 50 ? '#7ED321' :
+                                spotsPercentage > 20 ? '#ffa500' : '#ff4444'
+                            }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="class-card-footer">
+                      <Link
+                        to="/reservar"
+                        className={`btn-reserve ${classItem.spots === 0 ? 'disabled' : ''}`}
+                      >
+                        {classItem.spots > 0 ? 'Reservar Ahora' : 'Clase Llena'}
+                      </Link>
+                    </div>
+                  </motion.div>
+                )
+              })
+            ) : (
+              <motion.div
+                className="no-classes"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+              >
+                <div className="no-classes-icon">📅</div>
+                <h3>No hay clases disponibles</h3>
+                <p>Intenta ajustar los filtros para ver más opciones</p>
+              </motion.div>
+            )}
+          </motion.div>
         </div>
       </section>
     </div>
